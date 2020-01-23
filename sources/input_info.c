@@ -90,9 +90,9 @@ void			modf_option(char **f, t_fpf *ft_pf)
 		while (i < 5)
 			ft_pf->modf[i++] = '0';
 	}
-	if (**f == 'h' && f[0][1] != 'h')
+	if (**f == 'h' && f[0][1] == 'h')
 		ft_pf->modf[0] = '1';
-	else if (**f == 'h' && f[0][1] == 'h')
+	else if (**f == 'h' && f[0][1] != 'h')
 		ft_pf->modf[1] = '1';
 	else if (**f == 'l' && f[0][1] != 'l')
 		ft_pf->modf[2] = '1';
@@ -108,12 +108,10 @@ void			modf_option(char **f, t_fpf *ft_pf)
 
 void			type_option(char **f, va_list ap, int *len, t_fpf *ft_pf)
 {
-	char		c;
-
 	if (**f == 'd' || **f == 'i')
 		int_execution(ap, len, ft_pf);
-	// if (**f == 'o')
-	// 	c = 'o';
+	if (**f == 'o')
+		octa_execution(ap, len, ft_pf);
 	// if (**f == 'u')
 	// 	c = 'u';
 	// if (**f == 'x')
@@ -128,6 +126,9 @@ void			type_option(char **f, va_list ap, int *len, t_fpf *ft_pf)
 	// 	c = 's';
 	// if (**f == 'p')
 	// 	c = 'p';
-	// if (**f == '%')
-	// 	c = '%';
+	else if (**f == '%')
+	{
+		write(1, *f, 1);
+		*len += 1;
+	}
 }

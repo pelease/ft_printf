@@ -14,7 +14,7 @@ NAME = libftprintf.a
 
 CC = gcc
 
-/* FLAGS = -Wall -Wextra -Werror */
+FLAGS = -Wall -Wextra -Werror
 
 LIBFT = libft
 
@@ -26,7 +26,7 @@ INCLUDE = include
 
 SOURCE = ft_printf.c \
 		  input_info.c \
-		  int_execution.c
+		  type_execution.c
 
 SRC = $(addprefix $(DIR_S)/,$(SOURCE))
 

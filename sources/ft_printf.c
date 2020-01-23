@@ -44,6 +44,7 @@ int				buffer(char **f, va_list ap, int *len)
 {
 	t_fpf		ft_pf;
 
+	ft_pf.mwidth = 0;
 	while (**f != '\0')
 	{
 		if (**f == '-' || **f == '+' || **f == '#' || **f == '0' || **f == ' ')

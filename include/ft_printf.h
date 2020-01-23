@@ -23,6 +23,8 @@ typedef struct		s_fpf
 	unsigned int	mwidth;
 	unsigned int	precision;
 	char			modf[5];
+	//char			*size_w;
+	int				int_N;
 }					t_fpf;
 
 int					ft_printf(const char *format, ...);
@@ -35,5 +37,6 @@ void				modf_option(char **f, t_fpf *ft_pf);
 void				type_option(char **f, va_list ap, int *len, t_fpf *ft_pf);
 
 void				int_execution(va_list ap, int *len, t_fpf *ft_pf);
+void				octa_execution(va_list ap, int *len, t_fpf *ft_pf);
 
 #endif

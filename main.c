@@ -2,10 +2,14 @@
 
 int				main(void)
 {
-	int			a;
+	//int			b;
 
-	a = 5;
-	printf("%-0d", 123);
-	//ft_printf("%123+-d", a);
+	//char a;
+	//b = 128;
+	//a = b;
+	//printf("%hld\n", 1200);
+	//ft_printf("%hld\n", 1200);
+	printf("%o\n", 1200);
+	ft_printf("%o\n", 1200);
 	return (0);
 }
