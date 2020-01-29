@@ -15,10 +15,10 @@ int				main(void)
 	//ft_printf("ft_printf = %.11d", 92147983648);
 	//ft_printf("ft_printf = %5d", 100);
 	//ft_printf("ft_printf = %.6d", 20000);
-	ft_printf("ft_printf = %30.20lld\n", 2147483648);
-	//printf("___printf = %lld\n", LLONG_MIN);
-	//ft_printf("ft_printf = %10.5d\n", -123);
-	//printf("___printf = \"%6d\"\n", -123);
+	ft_printf("%10.4d\n", 808);
+	//printf("% d\n", 732);
+	// ft_printf("ft_printf = %lld\n", -9223372036854775809);
+	// printf("___printf = %lld\n", -9223372036854775809);
 	//printf("___printf = %+6d\n", -123);
 	//printf("%d\n", 2147483648);
 	//printf("%d\n", 2147483648);

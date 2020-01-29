@@ -14,7 +14,7 @@ NAME = libftprintf.a
 
 CC = gcc
 
-#FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
 LIBFT = libft
 
@@ -28,7 +28,8 @@ SOURCE = ft_printf.c \
 		  input_info.c \
 		  type_execution.c \
 		  all_for_int.c \
-		  conversion.c
+		  conversion.c \
+		  ft_itoa_printf.c
 
 SRC = $(addprefix $(DIR_S)/,$(SOURCE))
 

@@ -18,11 +18,10 @@ void			int_execution(va_list ap, int *len, t_fpf *ft_pf)
 	int_type_and_modf(ap, ft_pf, &arg);
 	int_precision(ft_pf, &arg);
 	int_mwidth(ft_pf, &arg);
-	// arg.sign == '-' ? printf("%s%c%s%s\n", arg.size_w, arg.sign,
-	// arg.size_pr, arg.str) : printf("%s%s%s\n", arg.size_w, arg.size_pr, arg.str);
-	*len = *len * 1;
-	//free()
-	exit(0);
+	int_flags(ft_pf, &arg, len);
+	ft_strdel(&arg.size_pr);
+	ft_strdel(&arg.size_w);
+	ft_strdel(&arg.str);
 }
 
 // void			octa_execution(va_list ap, int *len, t_fpf *ft_pf)

@@ -61,7 +61,7 @@ int				buffer(char **f, va_list ap, int *len)
 				**f == 's' || **f == 'p' || **f == '%')
 		{
 			type_option(f, ap, len, &ft_pf);
-			return (*len);
+			return (1);
 		}
 		else
 			(*f)++;

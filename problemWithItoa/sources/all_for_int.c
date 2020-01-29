@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   all_for_int.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pelease <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/29 17:56:29 by pelease           #+#    #+#             */
+/*   Updated: 2020/01/29 17:56:31 by pelease          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/ft_printf.h"
 
 void			int_type_and_modf(va_list ap, t_fpf *ft_pf, t_arg *arg)
@@ -23,7 +35,7 @@ void			int_type_and_modf(va_list ap, t_fpf *ft_pf, t_arg *arg)
 	}
 	else
 		arg->int_N = va_arg(ap, int);
-	ft_itoa_printf(ft_pf, arg);
+	ft_itoa_printf(arg);
 }
 
 void			int_precision(t_fpf *ft_pf, t_arg *arg)
@@ -59,7 +71,6 @@ void			int_mwidth(t_fpf *ft_pf, t_arg *arg)
 	i = -1;
 	tmp = 0;
 	tmp = (arg->sign == '-') ? 1 : 0;
-	//printf("\n%d\n%d\n", ft_pf->mwidth, arg->strlen + ft_pf->precision);
 	if (ft_pf->mwidth > arg->strlen + ft_pf->precision)
 		ft_pf->mwidth -= arg->strlen + tmp + ft_pf->precision;
 	else
@@ -75,5 +86,73 @@ void			int_mwidth(t_fpf *ft_pf, t_arg *arg)
 	{
 		arg->size_w = (char*)malloc(sizeof(char));
 		arg->size_w[0] = '\0';
+	}
+}
+
+void			int_flags(t_fpf *ft_pf, t_arg *arg, int *len)
+{
+	int			i;
+
+	i = 0;
+	*len += 1;
+	if (ft_pf->flags[0] != '1')
+	{
+		if (ft_pf->flags[3] == '1' && !(arg->size_pr))
+		{
+			while (arg->size_w[i] != '\0')
+				arg->size_w[i++] = '0';
+		}
+		if (ft_pf->flags[1] == '1' ||
+			(ft_pf->flags[1] != '1' && arg->sign == '-'))
+		{
+			ft_putstr(arg->size_w);
+			ft_putchar(arg->sign);
+			ft_putstr(arg->size_pr);
+			ft_putstr(arg->str);
+			//*len = *len + ft+strlen()
+		}
+		else if (ft_pf->flags[4] == '1')
+		{
+			if (ft_pf->mwidth == 0)
+				ft_putchar(' ');
+			else
+				arg->size_w[0] = ' ';
+			ft_putstr(arg->size_w);
+			ft_putstr(arg->size_pr);
+			ft_putstr(arg->str);
+		}
+		else
+		{
+			ft_putstr(arg->size_w);
+			ft_putstr(arg->size_pr);
+			ft_putstr(arg->str);
+		}
+	}
+	else
+	{
+		if (ft_pf->flags[1] == '1' ||
+			(ft_pf->flags[1] != '1' && arg->sign == '-'))
+		{
+			ft_putchar(arg->sign);
+			ft_putstr(arg->size_pr);
+			ft_putstr(arg->str);
+			ft_putstr(arg->size_w);
+		}
+		else if (ft_pf->flags[4] == '1')
+		{
+			if (ft_pf->mwidth == 0)
+				ft_putchar(' ');
+			else
+				arg->size_w[0] = ' ';
+			ft_putstr(arg->size_w);
+			ft_putstr(arg->size_pr);
+			ft_putstr(arg->str);
+		}
+		else
+		{
+			ft_putstr(arg->size_w);
+			ft_putstr(arg->size_pr);
+			ft_putstr(arg->str);
+		}
 	}
 }

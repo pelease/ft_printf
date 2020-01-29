@@ -128,5 +128,4 @@ void			type_option(char **f, va_list ap, int *len, t_fpf *ft_pf)
 		write(1, *f, 1);
 		*len += 1;
 	}
-	(*f)++;
 }
