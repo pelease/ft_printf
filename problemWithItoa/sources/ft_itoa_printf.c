@@ -12,9 +12,9 @@
 
 #include "../include/ft_printf.h"
 
-static long long int			delete_size(t_arg arg)
+static LLI			delete_size(t_arg arg)
 {
-	long long int				i;
+	LLI				i;
 
 	i = 1;
 	while (arg.int_N <= -10 || arg.int_N >= 10)
@@ -40,10 +40,10 @@ static int			str_size(t_arg arg)
 	return (i);
 }
 
-static int			itoa_output(t_arg *arg, long long int del_size)
+static int			itoa_output(t_arg *arg, LLI del_size)
 {
 	int				s_size;
-	long long int	num;
+	LLI				num;
 
 	s_size = 0;
 	num = arg->int_N;

@@ -15,7 +15,12 @@ int				main(void)
 	//ft_printf("ft_printf = %.11d", 92147983648);
 	//ft_printf("ft_printf = %5d", 100);
 	//ft_printf("ft_printf = %.6d", 20000);
-	ft_printf("%10.4d\n", 808);
+	//ft_printf("%10.4d\n", 808);
+	//printf("@main_ftprintf: %####0000 33..1..#00d\\n", 256);
+	//printf("@main_ftprintf: %###-#0000 33...12..#0+0d", 256);
+	ft_printf("%05d", 42);
+	
+	//printf("%llld", 128);
 	//printf("% d\n", 732);
 	// ft_printf("ft_printf = %lld\n", -9223372036854775809);
 	// printf("___printf = %lld\n", -9223372036854775809);

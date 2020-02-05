@@ -25,6 +25,7 @@ typedef struct		s_fpf
 {
 	char 			flags[5];// 0->'-'; 1->'+'; 2->'#'; 3->'0'; 4->' '; 
 	int				mwidth;
+	char			pr_sign;
 	int				precision;
 	char			modf[5];
 	char			type;

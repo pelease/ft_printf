@@ -58,6 +58,7 @@ void			precision_option(char **f, t_fpf *ft_pf)
 
 	i = 0;
 	(*f)++;
+	ft_pf->pr_sign = 'Y';
 	if (**f >= '1' && **f <= '9')
 	{
 		ft_pf->precision = ft_atoi(*f);
