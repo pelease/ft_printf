@@ -25,17 +25,17 @@ void			int_type_and_modf(va_list ap, t_fpf *ft_pf, t_arg *arg)
 	if (i != -1)
 	{
 		if (i == 0)
-			arg->int_N = (char)va_arg(ap, int);
+			arg->num_di = (char)va_arg(ap, int);
 		else if (i == 1)
-			arg->int_N = (short)va_arg(ap, int);
+			arg->num_di = (short)va_arg(ap, int);
 		else if (i == 2)
-			arg->int_N = va_arg(ap, long);
+			arg->num_di = va_arg(ap, long);
 		else if (i == 3)
-			arg->int_N = va_arg(ap, long long);
+			arg->num_di = va_arg(ap, long long);
 	}
 	else
-		arg->int_N = va_arg(ap, int);
-	ft_itoa_printf(arg);
+		arg->num_di = va_arg(ap, int);
+	ft_itoa_printf(ft_pf, arg);
 }
 
 void			int_precision(t_fpf *ft_pf, t_arg *arg)
@@ -48,15 +48,19 @@ void			int_precision(t_fpf *ft_pf, t_arg *arg)
 	if (ft_pf->precision > 0 && ft_pf->precision > arg->strlen)
 	{
 		ft_pf->precision -= arg->strlen;
-		arg->size_pr = (char*)malloc(sizeof(char) * (ft_pf->precision + 1));
+		if (!(arg->size_pr = (char*)malloc(sizeof(char) *
+			(ft_pf->precision + 1))))
+			exit(1);
 		while (++i < ft_pf->precision)
 			arg->size_pr[i] = '0';
 		arg->size_pr[ft_pf->precision] = '\0';
 	}
 	else
 	{
-		arg->size_pr = (char*)malloc(sizeof(char));
+		if (!(arg->size_pr = (char*)malloc(sizeof(char))))
+			exit(1);
 		arg->size_pr[0] = '\0';
+		ft_pf->precision = 0;
 	}
 	if (arg->str[0] == '-')
 		arg->strlen += 1;
@@ -69,22 +73,27 @@ void			int_mwidth(t_fpf *ft_pf, t_arg *arg)
 
 	i = -1;
 	tmp = (arg->sign == '-') ? 1 : 0;
-	if (arg->sign == '+' && ft_pf->flags[1] == '1')
+	if ((arg->sign == '+' && ft_pf->flags[1] == '1') ||
+		(ft_pf->flags[4] == '1' && ft_pf->flags[0] == '1'))
 		tmp = 1;
-	if (ft_pf->mwidth > arg->strlen + ft_pf->precision)
-		ft_pf->mwidth -= arg->strlen + tmp + ft_pf->precision;
-	else
-		ft_pf->mwidth = 0;
+	ft_pf->mwidth = (ft_pf->mwidth > arg->strlen + ft_pf->precision) ?
+		ft_pf->mwidth - (arg->strlen + tmp + ft_pf->precision) : 0;
+	// if (ft_pf->mwidth > arg->strlen + ft_pf->precision)
+	// 	ft_pf->mwidth -= arg->strlen + tmp + ft_pf->precision;
+	// else
+	// 	ft_pf->mwidth = 0;
 	if (ft_pf->mwidth > 0)
 	{
-		arg->size_w = (char*)malloc(sizeof(char) * (ft_pf->mwidth + 1));
+		if (!(arg->size_w = (char*)malloc(sizeof(char) * (ft_pf->mwidth + 1))))
+			exit(1);
 		while (++i < ft_pf->mwidth)
 			arg->size_w[i] = ' ';
 		arg->size_w[ft_pf->mwidth] = '\0';
 	}
 	else
 	{
-		arg->size_w = (char*)malloc(sizeof(char));
+		if(!(arg->size_w = (char*)malloc(sizeof(char))))
+			exit(1);
 		arg->size_w[0] = '\0';
 	}
 }
@@ -98,7 +107,6 @@ void			int_flags(t_fpf *ft_pf, t_arg *arg, int *len)
 	{
 		if (ft_pf->flags[3] == '1' && ft_pf->pr_sign != 'Y')
 		{
-			
 			while (arg->size_w[i] != '\0')
 				arg->size_w[i++] = '0';
 			if (ft_pf->flags[1] == '1' ||
@@ -116,14 +124,14 @@ void			int_flags(t_fpf *ft_pf, t_arg *arg, int *len)
 				if (ft_pf->mwidth == 0)
 				{
 					ft_putchar(' ');
-					*len = *len + ft_strlen(arg->size_w) + ft_strlen(arg->size_pr)
-						+ 1 + ft_strlen(arg->str);
+					*len = *len + ft_strlen(arg->size_w) +
+						ft_strlen(arg->size_pr) + 1 + ft_strlen(arg->str);
 				}
 				else
 				{
 					arg->size_w[0] = ' ';
-					*len = *len + ft_strlen(arg->size_w) + ft_strlen(arg->size_pr)
-						+ ft_strlen(arg->str);
+					*len = *len + ft_strlen(arg->size_w) +
+						ft_strlen(arg->size_pr) + ft_strlen(arg->str);
 				}
 				ft_putstr(arg->size_w);
 				ft_putstr(arg->size_pr);
@@ -189,18 +197,9 @@ void			int_flags(t_fpf *ft_pf, t_arg *arg, int *len)
 		}
 		else if (ft_pf->flags[4] == '1')
 		{
-			if (ft_pf->mwidth == 0)
-			{
-				ft_putchar(' ');
-				*len = *len + ft_strlen(arg->size_w) + ft_strlen(arg->size_pr)
-					+ 1 + ft_strlen(arg->str);
-			}
-			else
-			{
-				arg->size_w[0] = ' ';
-				*len = *len + ft_strlen(arg->size_w) + ft_strlen(arg->size_pr)
-					+ ft_strlen(arg->str);
-			}
+			ft_putchar(' ');
+			*len = *len + ft_strlen(arg->size_w) + ft_strlen(arg->size_pr)
+				+ ft_strlen(arg->str);
 			ft_putstr(arg->size_pr);
 			ft_putstr(arg->str);
 			ft_putstr(arg->size_w);

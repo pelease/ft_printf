@@ -100,6 +100,7 @@ void			modf_option(char **f, t_fpf *ft_pf)
 		ft_pf->modf[4] = '1';
 	if ((**f == 'h' && f[0][1] == 'h') || (**f == 'l' && f[0][1] == 'l'))	
 		(*f)++;
+	ft_pf->modf[5] = '\0';
 	(*f)++;
 }
 

@@ -17,38 +17,42 @@ static LLI			delete_size(t_arg arg)
 	LLI				i;
 
 	i = 1;
-	while (arg.int_N <= -10 || arg.int_N >= 10)
+	while (arg.num_di <= -10 || arg.num_di >= 10)
 	{
-		arg.int_N /= 10;
+		arg.num_di /= 10;
 		i *= 10;
 	}
 	return (i);
 }
 
-static int			str_size(t_arg arg)
+static int			str_size(t_arg arg, t_fpf *ft_pf)
 {
 	int				i;
 
 	i = 0;
-	if (arg.int_N == 0)
+	if (arg.num_di == 0 && ft_pf->pr_sign == 'Y' && ft_pf->precision == 0)
+		return (0);
+	if (arg.num_di == 0)
 		i++;
-	while (arg.int_N != 0)
+	while (arg.num_di != 0)
 	{
-		arg.int_N /= 10;
+		arg.num_di /= 10;
 		i++;
 	}
 	return (i);
 }
 
-static int			itoa_output(t_arg *arg, LLI del_size)
+static int			itoa_output(t_arg *arg, t_fpf *ft_pf, LLI del_size)
 {
 	int				s_size;
 	LLI				num;
 
 	s_size = 0;
-	num = arg->int_N;
+	num = arg->num_di;
 	if (num < 0)
 		num = num * (-1);
+	if (num == 0 && ft_pf->pr_sign == 'Y' && ft_pf->precision == 0)
+		return (0);
 	while (del_size > 0)
 	{
 		arg->str[s_size] = (num / del_size) % 10 + '0';
@@ -58,7 +62,7 @@ static int			itoa_output(t_arg *arg, LLI del_size)
 	return (s_size);
 }
 
-void				ft_itoa_printf(t_arg *arg)
+void				ft_itoa_printf(t_fpf *ft_pf, t_arg *arg)
 {
 	int				a;
 	int				s_size;
@@ -66,16 +70,16 @@ void				ft_itoa_printf(t_arg *arg)
 
 	del_size = delete_size(*arg);
 	a = 0;
-	arg->sign = (arg->int_N < 0) ? '-' : '+';
-	arg->str = (char*)malloc(sizeof(char) * (str_size(*arg) + 1));
+	arg->sign = (arg->num_di < 0) ? '-' : '+';
+	arg->str = (char*)malloc(sizeof(char) * (str_size(*arg, ft_pf) + 1));
 	if (!arg->str)
 		exit(1);
-	if (arg->int_N == LLONG_MIN)
+	if (arg->num_di == LLONG_MIN)
 	{
-		arg->int_N += 1;
+		arg->num_di += 1;
 		a = 1;
 	}
-	s_size = itoa_output(arg, del_size);
+	s_size = itoa_output(arg, ft_pf, del_size);
 	if (a == 1)
 		arg->str[s_size - 1] = '8';
 	arg->str[s_size] = '\0';

@@ -18,10 +18,12 @@ int				main(void)
 	//ft_printf("%10.4d\n", 808);
 	//printf("@main_ftprintf: %####0000 33..1..#00d\\n", 256);
 	//printf("@main_ftprintf: %###-#0000 33...12..#0+0d", 256);
-	ft_printf("%05d", 42);
-	
-	//printf("%llld", 128);
-	//printf("% d\n", 732);
+	//ft_printf("%05d", 42);
+	//printf("%lhhlld", 123);
+	//printf("%lld%hhd%lld\n", 22337203685477, 4294967209, -22337203685477);
+	//ft_printf("%lld\n%hhd\n%lld\n", 22337203685477, 4294967209, -22337203685477);
+	//ft_printf("%hhd", 4294967209);
+	printf("%.1d\n", -0);
 	// ft_printf("ft_printf = %lld\n", -9223372036854775809);
 	// printf("___printf = %lld\n", -9223372036854775809);
 	//printf("___printf = %+6d\n", -123);
