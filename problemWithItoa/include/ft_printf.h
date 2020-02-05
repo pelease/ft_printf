@@ -60,10 +60,15 @@ void				int_mwidth(t_fpf *ft_pf, t_arg *arg);
 void				int_precision(t_fpf *ft_pf, t_arg *arg);
 void				int_flags(t_fpf *ft_pf, t_arg *arg, int *len);
 
-void				ft_itoa_printf(t_fpf *ft_pf, t_arg *arg);
+void				uint_type_and_modf(va_list ap, t_fpf *ft_pf, t_arg *arg);
 
-// void				all_conversion(t_fpf *ft_pf, t_arg *arg);
+void				int_uint_minus_side(int *len, t_arg *arg, t_fpf *ft_pf);
+void				int_uint_not_minus_side(int *len, t_arg *arg, t_fpf *ft_pf);
+
+void				ft_itoa_printf(t_fpf *ft_pf, t_arg *arg);
+void				ft_uitoa_printf(t_fpf *ft_pf, t_arg *arg);
+
+void				all_conversion(t_arg *arg);
 // void				octa_conversion(t_fpf *ft_pf, t_arg *arg);
-// void				hex_conversion(t_fpf *ft_pf, t_arg *arg);
 
 #endif

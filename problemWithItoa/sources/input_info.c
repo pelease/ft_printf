@@ -111,8 +111,8 @@ void			type_option(char **f, va_list ap, int *len, t_fpf *ft_pf)
 		int_execution(ap, len, ft_pf);
 	// if (**f == 'o')
 	// 	octa_execution(ap, len, ft_pf);
-	// if (**f == 'u')
-	// 	c = 'u';
+	if (**f == 'u')
+		uint_execution(ap, len, ft_pf);
 	// if (**f == 'x')
 	// 	c = 'x';
 	// if (**f == 'X')

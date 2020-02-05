@@ -15,6 +15,7 @@
 void			int_execution(va_list ap, int *len, t_fpf *ft_pf)
 {
 	t_arg		arg;
+	
 	int_type_and_modf(ap, ft_pf, &arg);
 	int_precision(ft_pf, &arg);
 	int_mwidth(ft_pf, &arg);
@@ -26,5 +27,13 @@ void			int_execution(va_list ap, int *len, t_fpf *ft_pf)
 
 void			uint_execution(va_list ap, int *len, t_fpf *ft_pf)
 {
-	
+	t_arg		arg;
+
+	uint_type_and_modf(ap, ft_pf, &arg);
+	int_precision(ft_pf, &arg);
+	int_mwidth(ft_pf, &arg);
+	int_flags(ft_pf, &arg, len);
+	ft_strdel(&arg.size_pr);
+	ft_strdel(&arg.size_w);
+	ft_strdel(&arg.str);
 }

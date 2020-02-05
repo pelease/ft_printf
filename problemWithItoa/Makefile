@@ -27,9 +27,11 @@ INCLUDE = include
 SOURCE = ft_printf.c \
 		  input_info.c \
 		  type_execution.c \
-		  all_for_int.c \
-		  ft_itoa_printf.c
-		  #conversion.c
+		  all_for_int_uint.c \
+		  ft_itoa_printf.c \
+		  show_int_uint.c \
+		  ft_uitoa_printf.c \
+		  conversion.c
 
 SRC = $(addprefix $(DIR_S)/,$(SOURCE))
 

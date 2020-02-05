@@ -66,7 +66,7 @@ void				ft_itoa_printf(t_fpf *ft_pf, t_arg *arg)
 {
 	int				a;
 	int				s_size;
-	long long int	del_size;
+	LLI				del_size;
 
 	del_size = delete_size(*arg);
 	a = 0;

@@ -23,7 +23,8 @@ int				main(void)
 	//printf("%lld%hhd%lld\n", 22337203685477, 4294967209, -22337203685477);
 	//ft_printf("%lld\n%hhd\n%lld\n", 22337203685477, 4294967209, -22337203685477);
 	//ft_printf("%hhd", 4294967209);
-	printf("%.1d\n", -0);
+	printf("%#3.5x\n", 1);
+	//printf("%.1u\n", 0);
 	// ft_printf("ft_printf = %lld\n", -9223372036854775809);
 	// printf("___printf = %lld\n", -9223372036854775809);
 	//printf("___printf = %+6d\n", -123);

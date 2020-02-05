@@ -40,7 +40,7 @@ int				ft_printf(const char *format, ...)
 	return (len);
 }
 
-static void		initial_data(t_fpf *ft_pf)
+static void		init_data(t_fpf *ft_pf)
 {
 	int 		i;
 
@@ -61,7 +61,7 @@ int				buffer(char **f, va_list ap, int *len)
 {
 	t_fpf		ft_pf;
 
-	initial_data(&ft_pf);
+	init_data(&ft_pf);
 	while (**f != '\0')
 	{
 		if (**f == '-' || **f == '+' || **f == '#' || **f == '0' || **f == ' ')

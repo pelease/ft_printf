@@ -12,33 +12,56 @@
 
 #include "../include/ft_printf.h"
 
-// void			all_conversion(t_fpf *ft_pf, t_arg *arg)
-// {
-// 	if (ft_pf->type != 'x' && ft_pf->type != 'X')
-// 		octa_conversion(ft_pf, arg);
-// 	else
-// 		hex_conversion(ft_pf, arg);
-// }
+static void		uint_conversion(t_arg *arg)
+{
+	int			i;
 
-// void			octa_conversion(t_fpf *ft_pf, t_arg *arg)
+	i = arg->strlen - 1;
+	if (!(arg->str = (char*)malloc(sizeof(char) * (arg->strlen + 1))))
+		exit(1);
+	arg->str[arg->strlen] = '\0';
+	while (i >= 0)
+	{
+		arg->str[i--] = (arg->num_u % 10) + '0';
+		arg->num_u /= 10;
+	}
+}
+
+// static void		octa_conversion(t_fpf *ft_pf, t_arg *arg)
 // {
-// 	ULLI		octa;
+// 	int			i;
 // 	ULLI		num;
 // 	ULLI		tmp;
 
 // 	num = 0;
 // 	tmp = 1;
-// 	octa = arg->ouxX_N;
-// 	while (octa != 0)
+// 	i = 0;
+// 	if (!(arg->str = (char*)malloc(sizeof(char) * (i + 1))))
+// 		exit(1);
+// 	while (arg->num_u != 0)
 // 	{
-// 		num = num + octa % 8 * tmp;
-// 		tmp *= 10; 
+// 		num = num + arg->num_u % 8 * tmp;
+// 		tmp *= 10;
+// 		arg->num_u /= 8;
+// 		i++;
 // 	}
-// 	arg->ouxX_N = num;
+// 	arg->num_u = num;
+
 // }
 
-// void			hex_conversion(t_fpf *ft_pf, t_arg *arg)
+// static void		hex_conversion(t_fpf *ft_pf, t_arg *arg)
 // {
-// 	char		strx[] = "123456789abcdef";
-// 	char		strX[] = "123456789ABCDEF";
+// 	char		str[] = "123456789abcdef";
+// 	char		cap_str[] = "123456789ABCDEF";
 // }
+
+void			all_conversion(t_arg *arg)
+{
+	// if (ft_pf->type == 'o')
+	// 	octa_conversion(ft_pf, arg);
+	// else if (ft_pf->type == 'x' || ft_pf->type == 'X')
+	// 	hex_conversion(ft_pf, arg);
+	// else
+		uint_conversion(arg);	
+}
+
