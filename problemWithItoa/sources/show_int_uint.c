@@ -70,7 +70,7 @@ static void		flag_zero_space_sign(int *len, t_arg *arg, t_fpf *ft_pf)
 }
 
 
-void		int_uint_minus_side(int *len, t_arg *arg, t_fpf *ft_pf)
+void		int_uint_not_minus_side(int *len, t_arg *arg, t_fpf *ft_pf)
 {
 	int		i;
 
@@ -97,7 +97,7 @@ void		int_uint_minus_side(int *len, t_arg *arg, t_fpf *ft_pf)
 		without_flags(len, arg, ft_pf);
 }
 
-void		int_uint_not_minus_side(int *len, t_arg *arg, t_fpf *ft_pf)
+void		int_uint_minus_side(int *len, t_arg *arg, t_fpf *ft_pf)
 {
 	if ((ft_pf->flags[1] == '1' || (ft_pf->flags[1] != '1'
 			&& arg->sign == '-')) && ft_pf->type != 'u')

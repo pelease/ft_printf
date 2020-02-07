@@ -123,7 +123,7 @@ void			int_mwidth(t_fpf *ft_pf, t_arg *arg)
 void			int_flags(t_fpf *ft_pf, t_arg *arg, int *len)
 {
 	if (ft_pf->flags[0] != '1')
-		int_uint_minus_side(len, arg, ft_pf);
-	else
 		int_uint_not_minus_side(len, arg, ft_pf);
+	else
+		int_uint_minus_side(len, arg, ft_pf);
 }

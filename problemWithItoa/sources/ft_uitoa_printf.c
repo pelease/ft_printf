@@ -40,6 +40,6 @@ void			ft_uitoa_printf(t_fpf *ft_pf, t_arg *arg)
 
 	i = 0;
 	arg->strlen = str_size(ft_pf, *arg);
-	all_conversion(arg);
+	all_conversion(arg, ft_pf);
 
 }

@@ -37,3 +37,42 @@ void			uint_execution(va_list ap, int *len, t_fpf *ft_pf)
 	ft_strdel(&arg.size_w);
 	ft_strdel(&arg.str);
 }
+
+void			octa_execution(va_list ap, int *len, t_fpf *ft_pf)
+{
+	t_arg		arg;
+
+	uint_type_and_modf(ap, ft_pf, &arg);
+	int_precision(ft_pf, &arg);
+	octa_mwidth(ft_pf, &arg);
+	octa_flags(ft_pf, &arg, len);
+	ft_strdel(&arg.size_pr);
+	ft_strdel(&arg.size_w);
+	ft_strdel(&arg.str);
+}
+
+void			hex_execution(va_list ap, int *len, t_fpf *ft_pf)
+{
+	t_arg		arg;
+
+	hex_type_and_modf(ap, ft_pf, &arg);
+	int_precision(ft_pf, &arg);
+	hex_mwidth(ft_pf, &arg);
+	hex_flags(ft_pf, &arg, len);
+	ft_strdel(&arg.size_pr);
+	ft_strdel(&arg.size_w);
+	ft_strdel(&arg.str);
+}
+
+void			pointer_execution(va_list ap, int *len, t_fpf *ft_pf)
+{
+	t_arg		arg;
+
+	pointer_type(ap, ft_pf, &arg);
+	int_precision(ft_pf, &arg);
+	pointer_mwidth(ft_pf, &arg);
+	pointer_flags(ft_pf, &arg, len);
+	ft_strdel(&arg.size_pr);
+	ft_strdel(&arg.size_w);
+	ft_strdel(&arg.str);
+}

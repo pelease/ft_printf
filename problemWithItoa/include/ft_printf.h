@@ -53,7 +53,13 @@ void				type_option(char **f, va_list ap, int *len, t_fpf *ft_pf);
 
 void				int_execution(va_list ap, int *len, t_fpf *ft_pf);
 void				uint_execution(va_list ap, int *len, t_fpf *ft_pf);
-//void				octa_execution(va_list ap, int *len, t_fpf *ft_pf);
+void				octa_execution(va_list ap, int *len, t_fpf *ft_pf);
+void				hex_execution(va_list ap, int *len, t_fpf *ft_pf);
+void				pointer_execution(va_list ap, int *len, t_fpf *ft_pf);
+void				percent_execution(int *len, t_fpf *ft_pf);
+void				char_execution(va_list ap, int *len, t_fpf *ft_pf);
+void				string_execution(va_list ap, int *len, t_fpf *ft_pf);
+//void				float_execution(va_list ap, int *len, t_fpf *ft_pf);
 
 void				int_type_and_modf(va_list ap, t_fpf *ft_pf, t_arg *arg);
 void				int_mwidth(t_fpf *ft_pf, t_arg *arg);
@@ -62,13 +68,51 @@ void				int_flags(t_fpf *ft_pf, t_arg *arg, int *len);
 
 void				uint_type_and_modf(va_list ap, t_fpf *ft_pf, t_arg *arg);
 
+void				octa_type_and_modf(va_list ap, t_fpf *ft_pf, t_arg *arg);
+void				octa_mwidth(t_fpf *ft_pf, t_arg *arg);
+void				octa_flags(t_fpf *ft_pf, t_arg *arg, int *len);
+
+void				hex_type_and_modf(va_list ap, t_fpf *ft_pf, t_arg *arg);
+void				hex_mwidth(t_fpf *ft_pf, t_arg *arg);
+void				hex_flags(t_fpf *ft_pf, t_arg *arg, int *len);
+
+void				pointer_type(va_list ap, t_fpf *ft_pf, t_arg *arg);
+void				pointer_mwidth(t_fpf *ft_pf, t_arg *arg);
+void				pointer_flags(t_fpf *ft_pf, t_arg *arg, int *len);
+
+void				percent_mwidth(t_fpf *ft_pf, t_arg *arg);
+void				percent_flags(t_fpf *ft_pf, t_arg *arg, int *len);
+
+void				char_type_and_mwidth(va_list ap, t_fpf *ft_pf, t_arg *arg);
+void				char_flags(t_fpf *ft_pf, t_arg *arg, int *len);
+
+void				string_type_precision(va_list ap, t_fpf *ft_pf, t_arg *arg);
+void				string_mwidth(t_fpf *ft_pf, t_arg *arg);
+void				string_flags(t_fpf *ft_pf, t_arg *arg, int *len);
+
+
+
+
 void				int_uint_minus_side(int *len, t_arg *arg, t_fpf *ft_pf);
 void				int_uint_not_minus_side(int *len, t_arg *arg, t_fpf *ft_pf);
+
+void				octa_not_minus_side(int *len, t_arg *arg, t_fpf *ft_pf);
+void				octa_minus_side(int *len, t_arg *arg, t_fpf *ft_pf);
+
+void				hex_not_minus_side(int *len, t_arg *arg, t_fpf *ft_pf);
+void				hex_minus_side(int *len, t_arg *arg, t_fpf *ft_pf);
+
+void				pointer_minus_side(int *len, t_arg *arg, t_fpf *ft_pf);
+void				pointer_not_minus_side(int *len, t_arg *arg, t_fpf *ft_pf);
+
+
+
+
 
 void				ft_itoa_printf(t_fpf *ft_pf, t_arg *arg);
 void				ft_uitoa_printf(t_fpf *ft_pf, t_arg *arg);
 
-void				all_conversion(t_arg *arg);
-// void				octa_conversion(t_fpf *ft_pf, t_arg *arg);
+
+void				all_conversion(t_arg *arg, t_fpf *ft_pf);
 
 #endif

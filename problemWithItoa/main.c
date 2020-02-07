@@ -2,29 +2,39 @@
 
 int				main(void)
 {
-	//int			b;
+	int			a;
 
 	//char a;
 	//b = 128;
 	//a = b;
 	//printf("%hld\n", 1200);
 	//ft_printf("%hld\n", 1200);
-	//printf("___printf = %.11d\n", 92147983648);
-	//printf("___printf = %5d\n", 100);
-	//printf("___printf = %.6d\n", 20000);
-	//ft_printf("ft_printf = %.11d", 92147983648);
-	//ft_printf("ft_printf = %5d", 100);
-	//ft_printf("ft_printf = %.6d", 20000);
-	//ft_printf("%10.4d\n", 808);
-	//printf("@main_ftprintf: %####0000 33..1..#00d\\n", 256);
-	//printf("@main_ftprintf: %###-#0000 33...12..#0+0d", 256);
-	//ft_printf("%05d", 42);
-	//printf("%lhhlld", 123);
-	//printf("%lld%hhd%lld\n", 22337203685477, 4294967209, -22337203685477);
-	//ft_printf("%lld\n%hhd\n%lld\n", 22337203685477, 4294967209, -22337203685477);
-	//ft_printf("%hhd", 4294967209);
-	printf("%#3.5x\n", 1);
-	//printf("%.1u\n", 0);
+	//ft_printf("%#3.5u\n", 1);
+	printf("%.000000000003s", NULL);
+	// printf("% +p", 100);
+	// printf("% +o", 100);
+	// printf("% +x", 100);
+	// printf("% +X", 100);	
+	// ft_putchar('\n');
+	// a = ft_printf("%.5%");
+	// printf("\n%d", a);
+	// ft_putchar('\n');
+	// ft_putchar('\n');
+	// ft_putnbr(printf("%010.p\n", 0));
+	// ft_putchar('\n');
+	// ft_putnbr(ft_printf("%010.p\n", 0));
+	// ft_putchar('\n');
+	// ft_putnbr(printf("%.5p\n", 0));
+	// ft_putchar('\n');
+	// ft_putnbr(ft_printf("%.5p\n", 0));
+	// ft_putchar('\n');
+	// ft_putnbr(printf("%p\n", 0));
+	// ft_putchar('\n');
+	// ft_putnbr(ft_printf("%p\n", 0));
+	
+	
+	
+	//ft_printf("%#.x\n", 0);
 	// ft_printf("ft_printf = %lld\n", -9223372036854775809);
 	// printf("___printf = %lld\n", -9223372036854775809);
 	//printf("___printf = %+6d\n", -123);

@@ -59,6 +59,8 @@ void			precision_option(char **f, t_fpf *ft_pf)
 	i = 0;
 	(*f)++;
 	ft_pf->pr_sign = 'Y';
+	while (**f == '0')
+		(*f)++;
 	if (**f >= '1' && **f <= '9')
 	{
 		ft_pf->precision = ft_atoi(*f);
@@ -71,11 +73,7 @@ void			precision_option(char **f, t_fpf *ft_pf)
 		(*f) += i;
 	}
 	else
-	{
 		ft_pf->precision = 0;
-		if (**f == '0')
-			(*f)++;
-	}
 }
 
 void			modf_option(char **f, t_fpf *ft_pf)
@@ -109,25 +107,20 @@ void			type_option(char **f, va_list ap, int *len, t_fpf *ft_pf)
 	ft_pf->type = **f;
 	if (**f == 'd' || **f == 'i')
 		int_execution(ap, len, ft_pf);
-	// if (**f == 'o')
-	// 	octa_execution(ap, len, ft_pf);
-	if (**f == 'u')
+	else if (**f == 'o')
+		octa_execution(ap, len, ft_pf);
+	else if (**f == 'u')
 		uint_execution(ap, len, ft_pf);
-	// if (**f == 'x')
-	// 	c = 'x';
-	// if (**f == 'X')
-	// 	c = 'X';
+	else if (**f == 'x' || **f == 'X')
+		hex_execution(ap, len, ft_pf);
 	// if (**f == 'f')
 	// 	c = 'f';
-	// if (**f == 'c')
-	// 	c = 'c';
-	// if (**f == 's')
-	// 	c = 's';
-	// if (**f == 'p')
-	// 	c = 'p';
+	else if (**f == 'c')
+		char_execution(ap, len, ft_pf);
+	else if (**f == 's')
+		string_execution(ap, len, ft_pf);
+	else if (**f == 'p')
+		pointer_execution(ap, len, ft_pf);
 	else if (**f == '%')
-	{
-		write(1, *f, 1);
-		*len += 1;
-	}
+		percent_execution(len, ft_pf);
 }
