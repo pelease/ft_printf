@@ -10,7 +10,8 @@ int				main(void)
 	//printf("%hld\n", 1200);
 	//ft_printf("%hld\n", 1200);
 	//ft_printf("%#3.5u\n", 1);
-	printf("%.000000000003s", NULL);
+	//printf("%15.4d\n", 42);
+	ft_putnbr(ft_printf("%p", 0));
 	// printf("% +p", 100);
 	// printf("% +o", 100);
 	// printf("% +x", 100);

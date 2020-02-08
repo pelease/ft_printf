@@ -28,15 +28,14 @@ void			string_execution(va_list ap, int *len, t_fpf *ft_pf)
 	ft_strdel(&arg.size_w);
 }
 
-// void			float_execution(va_list ap, int *len, t_fpf *ft_pf)
-// {
-// 	t_arg		arg;
+void			float_execution(va_list ap, int *len, t_fpf *ft_pf)
+{
+	t_arg		arg;
 
-// 	hex_type_and_modf(ap, ft_pf, &arg);
-// 	int_precision(ft_pf, &arg);
-// 	hex_mwidth(ft_pf, &arg);
-// 	hex_flags(ft_pf, &arg, len);
-// 	ft_strdel(&arg.size_pr);
-// 	ft_strdel(&arg.size_w);
-// 	ft_strdel(&arg.str);
-// }
+	float_left_side(ap, ft_pf, &arg);
+	float_right_side(ft_pf, &arg);
+	float_mwidth(ft_pf, &arg);
+	float_flags(ft_pf, &arg, len);
+	ft_strdel(&arg.size_w);
+	ft_strdel(&arg.str);
+}

@@ -3,23 +3,28 @@
 static void		flag_zero(t_arg *arg, t_fpf *ft_pf)
 {
 	if (ft_pf->flags[3] == '1' && ft_pf->pr_sign != 'Y')
-			{
-				ft_putstr("0x\0");
-				ft_putstr(arg->size_w);
-				ft_putstr(arg->size_pr);
-			}
-			else if ((ft_pf->precision == 0 && ft_pf->pr_sign == 'Y')
-					|| ft_pf->pr_sign == 'Y')
-			{
-				ft_putstr(arg->size_w);
-				ft_putstr("0x\0");
-				ft_putstr(arg->size_pr);
-			}
-			else
-			{
-				ft_putstr(arg->size_w);
-				ft_putstr("0x0\0");
-		}
+	{
+		ft_putstr("0x\0");
+		ft_putstr(arg->size_w);
+		ft_putstr(arg->size_pr);
+	}
+	else if (ft_pf->precision == 0 && ft_pf->pr_sign == 'Y')
+	{
+		ft_putstr(arg->size_w);
+		ft_putstr("0x\0");
+		ft_putstr(arg->size_pr);
+	}
+	else if (ft_pf->pr_sign == 'Y')
+	{
+		ft_putstr(arg->size_w);
+		ft_putstr("0x0\0");
+		ft_putstr(arg->size_pr);
+	}
+	else
+	{
+		ft_putstr(arg->size_w);
+		ft_putstr("0x0\0");
+	}
 }
 
 static void		only_zero(int *len, t_arg *arg, t_fpf *ft_pf)
@@ -28,12 +33,17 @@ static void		only_zero(int *len, t_arg *arg, t_fpf *ft_pf)
 		flag_zero(arg, ft_pf);
 	else
 	{
-		if ((ft_pf->precision == 0 && ft_pf->pr_sign == 'Y')
-				|| ft_pf->pr_sign == 'Y')
+		if (ft_pf->precision == 0 && ft_pf->pr_sign == 'Y')
 		{
 			ft_putstr("0x\0");
 			ft_putstr(arg->size_pr);
 			ft_putstr(arg->size_w);
+		}
+		else if (ft_pf->pr_sign == 'Y')
+		{
+			ft_putstr(arg->size_w);
+			ft_putstr("0x0\0");
+			ft_putstr(arg->size_pr);
 		}
 		else
 		{

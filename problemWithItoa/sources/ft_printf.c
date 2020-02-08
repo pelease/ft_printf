@@ -66,10 +66,10 @@ int				buffer(char **f, va_list ap, int *len)
 	{
 		if (**f == '-' || **f == '+' || **f == '#' || **f == '0' || **f == ' ')
 			flags_option(f, &ft_pf);
-		else if (**f >= '1' && **f <= '9')
-			mwidth_option(f, &ft_pf);
+		else if ((**f >= '1' && **f <= '9') || **f == '*')
+			mwidth_option(ap, f, &ft_pf);
 		else if (**f == '.')
-			precision_option(f, &ft_pf);
+			precision_option(ap, f, &ft_pf);
 		else if (**f == 'h' || **f == 'l' || **f == 'L')
 			modf_option(f, &ft_pf);
 		else if (**f == 'd' || **f == 'i' || **f == 'o' || **f == 'u' ||

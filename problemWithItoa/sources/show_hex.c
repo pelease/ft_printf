@@ -71,24 +71,16 @@ void		hex_not_minus_side(int *len, t_arg *arg, t_fpf *ft_pf)
 		while (arg->size_w[i] != '\0')
 			arg->size_w[i++] = '0';
 		if (ft_pf->flags[2] == '1')
-		{
-			if (arg->num_u == 0)
-				with_out_flags(len, arg, ft_pf);
-			else
-				with_out_flags2(len, arg, ft_pf);
-		}
+			(arg->num_u == 0) ? with_out_flags(len, arg, ft_pf) :
+			with_out_flags2(len, arg, ft_pf);
 		else
 			with_out_flags(len, arg, ft_pf);
 	}
 	else
 	{
 		if (ft_pf->flags[2] == '1')
-		{
-			if (arg->num_u == 0)
-				with_out_flags(len, arg, ft_pf);
-			else
-				with_out_flags2(len, arg, ft_pf);
-		}
+			(arg->num_u == 0) ? with_out_flags(len, arg, ft_pf) :
+			with_out_flags2(len, arg, ft_pf);
 		else
 			with_out_flags(len, arg, ft_pf);
 	}

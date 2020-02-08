@@ -69,7 +69,6 @@ static void		hex_conversion(t_arg *arg, t_fpf *ft_pf)
 			num /= 16;
 		}
 	}
-	
 }
 
 void			all_conversion(t_arg *arg, t_fpf *ft_pf)

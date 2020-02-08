@@ -43,6 +43,7 @@ void			uint_type_and_modf(va_list ap, t_fpf *ft_pf, t_arg *arg)
 	int			i;
 
 	i = 4;
+	arg->sign = '+';
 	while (--i >= 0)
 	{
 		if (ft_pf->modf[i] == '1')
@@ -114,7 +115,7 @@ void			int_mwidth(t_fpf *ft_pf, t_arg *arg)
 	}
 	else
 	{
-		if(!(arg->size_w = (char*)malloc(sizeof(char))))
+		if (!(arg->size_w = (char*)malloc(sizeof(char))))
 			exit(1);
 		arg->size_w[0] = '\0';
 	}

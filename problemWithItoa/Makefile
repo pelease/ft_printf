@@ -40,6 +40,9 @@ SOURCE = ft_printf.c \
 		  all_for_pointer_and_percent.c \
 		  show_pointer.c \
 		  all_for_char_string.c \
+		  bonus_functions.c \
+		  all_for_float.c \
+		  show_float.c
 
 SRC = $(addprefix $(DIR_S)/,$(SOURCE))
 

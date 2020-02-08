@@ -35,23 +35,28 @@ void			flags_option(char **f, t_fpf *ft_pf)
 	(*f)++;
 }
 
-void			mwidth_option(char **f, t_fpf *ft_pf)
+void			mwidth_option(va_list ap, char **f, t_fpf *ft_pf)
 {
 	int			x;
 	int			i;
 
 	i = 0;
-	ft_pf->mwidth = ft_atoi(*f);
-	x = ft_pf->mwidth;
-	while (x > 0)
+	if (**f == '*')
+		asterisk_mwidth(ap, f, ft_pf);
+	else
 	{
-		x /= 10;
-		i++;
+		ft_pf->mwidth = ft_atoi(*f);
+		x = ft_pf->mwidth;
+		while (x > 0)
+		{
+			x /= 10;
+			i++;
+		}
+		(*f) += i;
 	}
-	(*f) += i;
 }
 
-void			precision_option(char **f, t_fpf *ft_pf)
+void			precision_option(va_list ap, char **f, t_fpf *ft_pf)
 {
 	int			x;
 	int			i;
@@ -72,6 +77,8 @@ void			precision_option(char **f, t_fpf *ft_pf)
 		}
 		(*f) += i;
 	}
+	else if (**f == '*')
+		asterisk_precision(ap, f, ft_pf);
 	else
 		ft_pf->precision = 0;
 }
@@ -113,8 +120,8 @@ void			type_option(char **f, va_list ap, int *len, t_fpf *ft_pf)
 		uint_execution(ap, len, ft_pf);
 	else if (**f == 'x' || **f == 'X')
 		hex_execution(ap, len, ft_pf);
-	// if (**f == 'f')
-	// 	c = 'f';
+	else if (**f == 'f')
+		float_execution(ap, len, ft_pf);
 	else if (**f == 'c')
 		char_execution(ap, len, ft_pf);
 	else if (**f == 's')

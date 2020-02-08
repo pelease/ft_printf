@@ -13,13 +13,15 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# define LLI long long int
-# define ULLI unsigned long long int
+# define LLI 		long long
+# define ULLI 		unsigned long long
+# define LD			long double
+# define PREC 		precision
 
 # include <limits.h>
 # include "../libft/libft.h"
 # include <stdarg.h>
-# include <stdio.h> 
+# include <stdio.h>
 
 typedef struct		s_fpf
 {
@@ -40,14 +42,29 @@ typedef struct		s_arg
 	int				strlen;
 	char			*str;
 	char			sign;
+	LD				num_fl;
+	char			f[51];
 }					t_arg;
+
+// typedef struct		s_float
+// {
+// 	LLI				mantisa: 64;
+// 	unsigned int	exp: 15;
+// 	unsigned int	sign: 1;
+// }					t_float;
+
+// typedef union		s_union
+// {
+// 	t_float			fl_oat;
+// 	long double		value
+// }					t_union;
 
 int					ft_printf(const char *format, ...);
 int					buffer(char **f, va_list ap, int *len);
 
 void				flags_option(char **f, t_fpf *ft_pf);
-void				mwidth_option(char **f, t_fpf *ft_pf);
-void				precision_option(char **f, t_fpf *ft_pf);
+void				mwidth_option(va_list ap, char **f, t_fpf *ft_pf);
+void				precision_option(va_list ap, char **f, t_fpf *ft_pf);
 void				modf_option(char **f, t_fpf *ft_pf);
 void				type_option(char **f, va_list ap, int *len, t_fpf *ft_pf);
 
@@ -59,7 +76,7 @@ void				pointer_execution(va_list ap, int *len, t_fpf *ft_pf);
 void				percent_execution(int *len, t_fpf *ft_pf);
 void				char_execution(va_list ap, int *len, t_fpf *ft_pf);
 void				string_execution(va_list ap, int *len, t_fpf *ft_pf);
-//void				float_execution(va_list ap, int *len, t_fpf *ft_pf);
+void				float_execution(va_list ap, int *len, t_fpf *ft_pf);
 
 void				int_type_and_modf(va_list ap, t_fpf *ft_pf, t_arg *arg);
 void				int_mwidth(t_fpf *ft_pf, t_arg *arg);
@@ -90,6 +107,11 @@ void				string_type_precision(va_list ap, t_fpf *ft_pf, t_arg *arg);
 void				string_mwidth(t_fpf *ft_pf, t_arg *arg);
 void				string_flags(t_fpf *ft_pf, t_arg *arg, int *len);
 
+void				float_left_side(va_list ap, t_fpf *ft_pf, t_arg *arg);
+void				float_right_side(t_fpf *ft_pf, t_arg *arg);
+void				float_mwidth(t_fpf *ft_pf, t_arg *arg);
+void				float_flags(t_fpf *ft_pf, t_arg *arg, int *len);
+
 
 
 
@@ -105,12 +127,16 @@ void				hex_minus_side(int *len, t_arg *arg, t_fpf *ft_pf);
 void				pointer_minus_side(int *len, t_arg *arg, t_fpf *ft_pf);
 void				pointer_not_minus_side(int *len, t_arg *arg, t_fpf *ft_pf);
 
-
-
+void				float_minus_side(int *len, t_arg *arg, t_fpf *ft_pf);
+void				float_not_minus_side(int *len, t_arg *arg, t_fpf *ft_pf);
 
 
 void				ft_itoa_printf(t_fpf *ft_pf, t_arg *arg);
 void				ft_uitoa_printf(t_fpf *ft_pf, t_arg *arg);
+
+
+void				asterisk_mwidth(va_list ap, char **f, t_fpf *ft_pf);
+void				asterisk_precision(va_list ap, char **f, t_fpf *ft_pf);
 
 
 void				all_conversion(t_arg *arg, t_fpf *ft_pf);
