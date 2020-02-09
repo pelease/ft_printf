@@ -26,7 +26,24 @@ INCLUDE = include
 
 SOURCE = ft_printf.c \
 		  input_info.c \
-		  type_execution.c
+		  type_execution.c \
+		  type_execution_part2.c \
+		  all_for_int_uint.c \
+		  ft_itoa_printf.c \
+		  show_int_uint.c \
+		  ft_uitoa_printf.c \
+		  conversion.c \
+		  all_for_octa.c \
+		  show_octa.c \
+		  all_for_hex.c \
+		  show_hex.c \
+		  all_for_pointer_and_percent.c \
+		  show_pointer.c \
+		  all_for_char_string.c \
+		  bonus_functions.c \
+		  all_for_float.c \
+		  show_float.c \
+		  show_float_part2.c
 
 SRC = $(addprefix $(DIR_S)/,$(SOURCE))
 
@@ -36,6 +53,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C $(LIBFT)
+	@cp libft/libft.a ./$(NAME)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 

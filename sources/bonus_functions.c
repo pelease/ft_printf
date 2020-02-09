@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   bonus_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pelease <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/21 21:13:36 by pelease           #+#    #+#             */
-/*   Updated: 2019/09/21 21:13:38 by pelease          ###   ########.fr       */
+/*   Created: 2020/02/09 21:38:18 by pelease           #+#    #+#             */
+/*   Updated: 2020/02/09 21:38:20 by pelease          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/ft_printf.h"
 
-void	ft_putstr(char const *s)
+void			asterisk_precision(va_list ap, char **f, t_fpf *ft_pf)
 {
-	int i;
-
-	i = 0;
-	if (s)
+	ft_pf->precision = va_arg(ap, int);
+	if (ft_pf->precision < 0)
 	{
-		while (s[i] != '\0')
-			i++;
-		write(1, s, i);
+		ft_pf->precision = 0;
+		ft_pf->pr_sign = 'N';
 	}
+	(*f)++;
+}
+
+void			asterisk_mwidth(va_list ap, char **f, t_fpf *ft_pf)
+{
+	ft_pf->mwidth = va_arg(ap, int);
+	if (ft_pf->mwidth < 0)
+	{
+		ft_pf->mwidth *= -1;
+		ft_pf->flags[0] = '1';
+	}
+	(*f)++;
 }

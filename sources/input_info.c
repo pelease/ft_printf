@@ -33,33 +33,39 @@ void			flags_option(char **f, t_fpf *ft_pf)
 	else
 		ft_pf->flags[4] = '1';
 	(*f)++;
-	//printf("%s\n", ft_pf->flags);
-	
 }
 
-void			mwidth_option(char **f, t_fpf *ft_pf)
+void			mwidth_option(va_list ap, char **f, t_fpf *ft_pf)
 {
 	int			x;
 	int			i;
 
 	i = 0;
-	ft_pf->mwidth = ft_atoi(*f);
-	x = ft_pf->mwidth;
-	while (x > 0)
+	if (**f == '*')
+		asterisk_mwidth(ap, f, ft_pf);
+	else
 	{
-		x /= 10;
-		i++;
+		ft_pf->mwidth = ft_atoi(*f);
+		x = ft_pf->mwidth;
+		while (x > 0)
+		{
+			x /= 10;
+			i++;
+		}
+		(*f) += i;
 	}
-	(*f) += i;
 }
 
-void			precision_option(char **f, t_fpf *ft_pf)
+void			precision_option(va_list ap, char **f, t_fpf *ft_pf)
 {
 	int			x;
 	int			i;
 
 	i = 0;
 	(*f)++;
+	ft_pf->pr_sign = 'Y';
+	while (**f == '0')
+		(*f)++;
 	if (**f >= '1' && **f <= '9')
 	{
 		ft_pf->precision = ft_atoi(*f);
@@ -71,13 +77,10 @@ void			precision_option(char **f, t_fpf *ft_pf)
 		}
 		(*f) += i;
 	}
+	else if (**f == '*')
+		asterisk_precision(ap, f, ft_pf);
 	else
-	{
 		ft_pf->precision = 0;
-		if (**f == '0')
-			(*f)++;
-	}
-	//printf("%d\n", ft_pf->precision);
 }
 
 void			modf_option(char **f, t_fpf *ft_pf)
@@ -100,35 +103,31 @@ void			modf_option(char **f, t_fpf *ft_pf)
 		ft_pf->modf[3] = '1';
 	else if (**f == 'L')
 		ft_pf->modf[4] = '1';
-	if ((**f == 'h' && f[0][1] == 'h') || (**f == 'l' && f[0][1] == 'l'))	
+	if ((**f == 'h' && f[0][1] == 'h') || (**f == 'l' && f[0][1] == 'l'))
 		(*f)++;
+	ft_pf->modf[5] = '\0';
 	(*f)++;
-	//printf("%s\n", ft_pf->modf);
 }
 
 void			type_option(char **f, va_list ap, int *len, t_fpf *ft_pf)
 {
+	ft_pf->type = **f;
 	if (**f == 'd' || **f == 'i')
 		int_execution(ap, len, ft_pf);
-	if (**f == 'o')
+	else if (**f == 'o')
 		octa_execution(ap, len, ft_pf);
-	// if (**f == 'u')
-	// 	c = 'u';
-	// if (**f == 'x')
-	// 	c = 'x';
-	// if (**f == 'X')
-	// 	c = 'X';
-	// if (**f == 'f')
-	// 	c = 'f';
-	// if (**f == 'c')
-	// 	c = 'c';
-	// if (**f == 's')
-	// 	c = 's';
-	// if (**f == 'p')
-	// 	c = 'p';
+	else if (**f == 'u')
+		uint_execution(ap, len, ft_pf);
+	else if (**f == 'x' || **f == 'X')
+		hex_execution(ap, len, ft_pf);
+	else if (**f == 'f')
+		float_execution(ap, len, ft_pf);
+	else if (**f == 'c')
+		char_execution(ap, len, ft_pf);
+	else if (**f == 's')
+		string_execution(ap, len, ft_pf);
+	else if (**f == 'p')
+		pointer_execution(ap, len, ft_pf);
 	else if (**f == '%')
-	{
-		write(1, *f, 1);
-		*len += 1;
-	}
+		percent_execution(len, ft_pf);
 }

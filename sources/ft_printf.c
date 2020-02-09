@@ -40,19 +40,36 @@ int				ft_printf(const char *format, ...)
 	return (len);
 }
 
+static void		init_data(t_fpf *ft_pf)
+{
+	int			i;
+
+	i = -1;
+	ft_pf->mwidth = 0;
+	ft_pf->precision = 0;
+	while (++i < 5)
+		ft_pf->flags[i] = '0';
+	ft_pf->flags[5] = '\0';
+	ft_pf->pr_sign = 'N';
+	i = -1;
+	while (++i < 5)
+		ft_pf->modf[i] = '0';
+	ft_pf->modf[5] = '\0';
+}
+
 int				buffer(char **f, va_list ap, int *len)
 {
 	t_fpf		ft_pf;
 
-	ft_pf.mwidth = 0;
+	init_data(&ft_pf);
 	while (**f != '\0')
 	{
 		if (**f == '-' || **f == '+' || **f == '#' || **f == '0' || **f == ' ')
 			flags_option(f, &ft_pf);
-		else if (**f >= '1' && **f <= '9')
-			mwidth_option(f, &ft_pf);
+		else if ((**f >= '1' && **f <= '9') || **f == '*')
+			mwidth_option(ap, f, &ft_pf);
 		else if (**f == '.')
-			precision_option(f, &ft_pf);
+			precision_option(ap, f, &ft_pf);
 		else if (**f == 'h' || **f == 'l' || **f == 'L')
 			modf_option(f, &ft_pf);
 		else if (**f == 'd' || **f == 'i' || **f == 'o' || **f == 'u' ||
@@ -60,7 +77,7 @@ int				buffer(char **f, va_list ap, int *len)
 				**f == 's' || **f == 'p' || **f == '%')
 		{
 			type_option(f, ap, len, &ft_pf);
-			return (*len);
+			return (1);
 		}
 		else
 			(*f)++;

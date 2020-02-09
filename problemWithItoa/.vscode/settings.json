@@ -1,8 +1,0 @@
-{
-	"files.associations": {
-		"__config": "cpp",
-		"cstdarg": "cpp",
-		"cstddef": "cpp",
-		"ft_printf.h": "c"
-	}
-}
