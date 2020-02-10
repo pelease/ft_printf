@@ -40,6 +40,7 @@ typedef struct			s_arg
 	char				*str;
 	char				sign;
 	long double			num_fl;
+	int					nan_inf;
 	char				f[51];
 }						t_arg;
 
@@ -95,8 +96,10 @@ void					string_type_precision(va_list ap, t_fpf *ft_pf,
 void					string_mwidth(t_fpf *ft_pf, t_arg *arg);
 void					string_flags(t_fpf *ft_pf, t_arg *arg, int *len);
 
-void					float_left_side(va_list ap, t_fpf *ft_pf, t_arg *arg);
+void					float_left_side(va_list ap, t_fpf *ft_pf, t_arg *arg,
+						int *len);
 void					float_right_side(t_fpf *ft_pf, t_arg *arg);
+int						float_nan_inf(int *len, t_arg *arg, t_fpf *ft_pf);
 void					float_mwidth(t_fpf *ft_pf, t_arg *arg);
 void					float_flags(t_fpf *ft_pf, t_arg *arg, int *len);
 

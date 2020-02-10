@@ -45,3 +45,29 @@ void			float_minus_side(int *len, t_arg *arg, t_fpf *ft_pf, int test)
 	else
 		float_flag_hash(len, arg, ft_pf);
 }
+
+int				float_nan_inf(int *len, t_arg *arg, t_fpf *ft_pf)
+{
+	int			i;
+
+	i = 0;
+	if (arg->num_fl != arg->num_fl)
+		i = 1;
+	if ((arg->num_fl == arg->num_fl + arg->num_fl / .0) && arg->num_fl > 0)
+		i = (ft_pf->flags[1] == '1') ? 4 : 3;
+	if ((arg->num_fl == arg->num_fl + arg->num_fl / .0) && arg->num_fl < 0)
+		i = 2;
+	if (i == 1 || i == 3)
+		*len += 3;
+	else if (i == 2 || i == 4)
+		*len += 4;
+	if (i == 1)
+		ft_putstr("nan");
+	else if (i == 4)
+		ft_putstr("+inf");
+	else if (i == 3)
+		ft_putstr("inf");
+	else if (i == 2)
+		ft_putstr("-inf");
+	return (i);
+}
